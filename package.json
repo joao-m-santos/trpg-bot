@@ -1,0 +1,26 @@
+{
+  "name": "trpg-bot",
+  "version": "1.0.0",
+  "description": "A text-based RPG Discord Bot",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joao-m-santos/trpg-bot.git"
+  },
+  "author": "Joao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joao-m-santos/trpg-bot/issues"
+  },
+  "homepage": "https://github.com/joao-m-santos/trpg-bot#readme"
+}

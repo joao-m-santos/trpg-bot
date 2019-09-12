@@ -1,0 +1,28 @@
+---
+--- Profile
+[Name]:Character name
+[Bio]:Brief character description
+--- 
+[Health]:Healthy
+[Sanity]:5
+[Initiative]:(Speed)
+---
+--- Passive skills
+[Endurance]:(1/2/3)
+[Wits]:(1/2/3)
+[Speed]:(1/2/3)
+---
+--- Active skills
+[Combat (melee)]:0
+[Combat (ranged)]:0
+[Communication]:0
+[Orientation]:0
+[Stealth]:0
+[Profiling]:0
+[Science]:0
+[Occult]:0
+[Faith]:0
+[Clearence Level]:0
+---
+--- Lucky Shots
+[Lucky Shots]:0
