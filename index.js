@@ -1,52 +1,41 @@
 const Discord = require("discord.js");
-const fs = require("fs");
-const readline = require("readline");
-const https = require("https");
-const request = require("request");
 
+const { prefix, token } = require("./config.json");
 const utils = require("./utils");
+const commands = require("./commands.js");
 
 const client = new Discord.Client();
 
-const _token = "NjIxNjM0MTEzOTI4OTUzODU3.XXoMzw.slmo2ynijuEPmhcGF3TGM4Jp0MQ";
-
-const _charsheetExample = "https://github.com/joao-m-santos/trpg-bot/";
+const isCommand = msg => (msg.match(/^!trpg .*$/g) ? true : false);
 
 client.once("ready", () => {
     console.log("Ready!");
+    global.CHANNEL = client.channels.find(ch => ch.name === "general");
+    // console.log(global.CHANNEL);
 });
 
-client.login(_token);
+client.login(token);
 
 client.on("message", message => {
-    if (
-        message.attachments &&
-        message.content.trim() === "!trpg register-sheet"
-    ) {
-        // if (message.attachments) {
-        const author = message.author;
-        console.log(author);
-        let file = message.attachments.first();
-        request.get(file.url, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                const fileData = body.split(/\r?\n/);
-            } else {
-                console.log(error);
-            }
-        });
-    } else {
-        _send(
-            message.channel,
-            `*No attachment found!* Please attach a Character sheet text file and try again. _(You can find the template at ${_charsheetExample})_`
+    if (message.author.bot) return;
+
+    const msgBody = message.content.trim();
+    if (isCommand(msgBody)) {
+        const commandType = msgBody.split(" ")[1];
+        const commandAction = msgBody.split(" ")[2];
+        console.log(
+            "Command type: " + commandType,
+            "Command action: " + commandAction
         );
+        switch (commandType) {
+            case "sheet":
+                commands.sheets(commandAction, message);
+                break;
+            case "player":
+                commands.player(commandAction, message);
+                break;
+            default:
+                break;
+        }
     }
-    // if (message.content.includes("!what")) {
-    //     message.channel.send("Today we're playing Portela's SNAP.");
-    // }
-    // if (message.attachments) {
-    //     for (var key in message.attachments) {
-    //         let attachment = message.attachments[key];
-    //         console.log(attachment);
-    //     }
-    // }
 });
