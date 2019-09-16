@@ -34,7 +34,10 @@ class CharacterSheet {
                             if (err) throw err;
 
                             global.CHANNEL.send(
-                                `🌟 Your new sheet was registered successfully! Have fun playing as ${sheet.profile.name}!`
+                                `🌟 Your new sheet was registered successfully! To play as **${sheet.profile.name}**, type ` +
+                                    "`!trpg player playAs " +
+                                    sheet.sheetID +
+                                    "`"
                             );
 
                             player.sheets.push(newSheet);

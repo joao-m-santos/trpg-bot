@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 
 const { prefix, token } = require("./config.json");
 const utils = require("./utils");
-const commands = require("./commands.js");
 
 const client = new Discord.Client();
 
 const Player = require("./api/schemas/player");
 const Sheet = require("./api/schemas/sheet");
+
+const sheetFunction = require("./commands/characterSheet");
+const playerFunction = require("./commands/player");
+const rollFunction = require("./commands/roll");
 
 const isCommand = msg => (msg.match(/^!trpg .*$/g) ? true : false);
 
@@ -16,9 +19,7 @@ client.once("ready", () => {
     console.log("Ready!");
 
     const database = require("./api/connection");
-    database(db => {
-        
-    });
+    database(db => {});
 
     global.CHANNEL = client.channels.find(ch => ch.name === "general");
     // console.log(global.CHANNEL);
@@ -39,10 +40,13 @@ client.on("message", message => {
         );
         switch (commandType) {
             case "sheet":
-                commands.sheets(commandAction, message);
+                sheetFunction(commandAction, message);
                 break;
             case "player":
-                commands.player(commandAction, message);
+                playerFunction(commandAction, message);
+                break;
+            case "roll":
+                rollFunction(message);
                 break;
             default:
                 break;

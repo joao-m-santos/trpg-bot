@@ -51,35 +51,30 @@ class DiscordPlayer {
             .model("player")
             .findOne({ discordID: this.id })
             .populate("sheets")
+            .populate("currentSheet")
             .exec((err, player) => {
                 if (err) throw err;
 
                 if (player) {
                     if (player.currentSheet) {
                         global.CHANNEL.send(
-                            `You are currently playing as ${
-                                player.sheets.find(
-                                    s =>
-                                        s.sheetID ===
-                                        player.currentSheet.sheetID
-                                ).profile.name
-                            }`
+                            `You are currently playing as **${player.currentSheet.profile.name}**.`
                         );
-                    } else {
-                        global.CHANNEL.send(
-                            "Here are your available sheets. Select a character to play as by typing `!trpg player {id}`"
-                        );
-                        var message = ``;
-                        for (var sheet of player.sheets) {
-                            message +=
-                                "📄 `" +
-                                sheet.sheetID +
-                                "` - **" +
-                                sheet.profile.name +
-                                "**\n";
-                        }
-                        global.CHANNEL.send(message);
                     }
+
+                    global.CHANNEL.send(
+                        "Here are your available sheets. Select a character to play as by typing `!trpg player {id}`"
+                    );
+                    var message = ``;
+                    for (var sheet of player.sheets) {
+                        message +=
+                            "📄 `" +
+                            sheet.sheetID +
+                            "` - **" +
+                            sheet.profile.name +
+                            "**\n";
+                    }
+                    global.CHANNEL.send(message);
                 }
             });
     };

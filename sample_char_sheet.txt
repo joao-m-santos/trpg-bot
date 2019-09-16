@@ -1,28 +1,29 @@
 ---
 --- Profile
-[Name]:Character name
-[Bio]:Brief character description
---- 
+[Name]:John Doe
+[Bio]:I'm the man
+---
+--- Status
 [Health]:Healthy
 [Sanity]:5
-[Initiative]:(Speed)
+[Initiative]:3
 ---
---- Passive skills
-[Endurance]:(1/2/3)
-[Wits]:(1/2/3)
-[Speed]:(1/2/3)
+--- Passives
+[Endurance]:2
+[Wits]:1
+[Speed]:3
 ---
---- Active skills
-[Combat (melee)]:0
+--- Skills
+[Combat (melee)]:4
 [Combat (ranged)]:0
 [Communication]:0
-[Orientation]:0
-[Stealth]:0
+[Orientation]:2
+[Stealth]:2
 [Profiling]:0
 [Science]:0
 [Occult]:0
-[Faith]:0
+[Faith]:1
 [Clearence Level]:0
 ---
---- Lucky Shots
-[Lucky Shots]:0
+--- LuckyShots
+[Lucky Shots]:1
