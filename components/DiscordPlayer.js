@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Player = require("../api/schemas/player");
 
 const utils = require("../utils");
-const errors = require("../errors");
 
 class DiscordPlayer {
     constructor(author) {

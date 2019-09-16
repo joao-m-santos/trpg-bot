@@ -3,7 +3,6 @@ const Roll = require("roll");
 const { prefix } = require("../config.json");
 
 const utils = require("../utils");
-const errors = require("../errors");
 
 const skills = [
     "combat_melee",

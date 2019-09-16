@@ -1,7 +1,6 @@
 const request = require("request");
 
 const utils = require("../utils");
-const errors = require("../errors");
 
 const DiscordPlayer = require("../components/DiscordPlayer");
 

@@ -1,7 +1,7 @@
 const request = require("request");
 
 const utils = require("../utils");
-const errors = require("../errors");
+const { sheetTemplate } = require("../config.json");
 
 const CharacterSheet = require("../components/CharacterSheet");
 
@@ -23,18 +23,26 @@ const commands = {
                     CharacterSheet.validate(fileData)
                         .then(res => {
                             message.channel.send(res);
-                            const cs = new CharacterSheet(fileData, file, author.id);
+                            const cs = new CharacterSheet(
+                                fileData,
+                                file,
+                                author.id
+                            );
                             cs.register();
                         })
                         .catch(err => {
                             message.channel.send(err);
                         });
                 } else {
-                    errors.serverError(message.channel);
+                    global.CHANNEL.send(
+                        `\:poop: There was an error getting the file you uploaded! It's probably a Discord issue. Please try again in a while.`
+                    );
                 }
             });
         } else {
-            errors.noAttachment(message.channel);
+            global.CHANNEL.send(
+                `\:poop: **No attachment found!** Please attach a Character sheet text file and try again. *(You can find the template at ${sheetTemplate})*`
+            );
         }
     }
 };

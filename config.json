@@ -1,6 +1,4 @@
 {
-    "dbString": "mongodb+srv://admin:osrussostemarmaspoderosas1111@tprg-cluster-0-wznct.mongodb.net/test?retryWrites=true&w=majority",
-	"prefix": "!trpg",
-    "token": "NjIxNjM0MTEzOTI4OTUzODU3.XXoMzw.slmo2ynijuEPmhcGF3TGM4Jp0MQ",
+    "prefix": "!trpg",
     "sheetTemplate": "https://github.com/joao-m-santos/trpg-bot/blob/master/sample_char_sheet.txt"
 }

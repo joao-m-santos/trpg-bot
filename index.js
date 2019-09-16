@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
 
-const { prefix, token } = require("./config.json");
+const { prefix } = require("./config.json");
+const { token } = require("./private-config.json");
 const utils = require("./utils");
 
 const client = new Discord.Client();

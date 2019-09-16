@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const chalk = require("chalk");
-const { dbString } = require("../config.json");
+const { dbString } = require("../private-config.json");
 
 var connected = chalk.bold.cyan;
 var error = chalk.bold.yellow;
