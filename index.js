@@ -9,10 +9,13 @@ const client = new Discord.Client();
 
 const Player = require("./api/schemas/player");
 const Sheet = require("./api/schemas/sheet");
+const Campaign = require("./api/schemas/campaign");
+const Dm = require("./api/schemas/dm");
 
 const sheetFunction = require("./commands/characterSheet");
 const playerFunction = require("./commands/player");
 const rollFunction = require("./commands/roll");
+const dmFunction = require("./commands/dm");
 
 const isCommand = msg => (msg.match(/^!trpg .*$/g) ? true : false);
 
@@ -23,7 +26,6 @@ client.once("ready", () => {
     database(db => {});
 
     global.CHANNEL = client.channels.find(ch => ch.name === "general");
-    // console.log(global.CHANNEL);
 });
 
 client.login(token);
@@ -48,6 +50,9 @@ client.on("message", message => {
                 break;
             case "roll":
                 rollFunction(message);
+                break;
+            case "dm":
+                dmFunction(commandAction, message);
                 break;
             default:
                 break;
