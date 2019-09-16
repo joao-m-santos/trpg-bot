@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const mongoose = require("mongoose");
 
 const { prefix, token } = require("./config.json");
 const utils = require("./utils");
@@ -6,10 +7,19 @@ const commands = require("./commands.js");
 
 const client = new Discord.Client();
 
+const Player = require("./api/schemas/player");
+const Sheet = require("./api/schemas/sheet");
+
 const isCommand = msg => (msg.match(/^!trpg .*$/g) ? true : false);
 
 client.once("ready", () => {
     console.log("Ready!");
+
+    const database = require("./api/connection");
+    database(db => {
+        
+    });
+
     global.CHANNEL = client.channels.find(ch => ch.name === "general");
     // console.log(global.CHANNEL);
 });

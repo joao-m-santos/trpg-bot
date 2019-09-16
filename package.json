@@ -4,7 +4,9 @@
   "description": "A text-based RPG Discord Bot",
   "main": "index.js",
   "dependencies": {
+    "chalk": "^2.4.2",
     "discord.js": "^11.5.1",
+    "mongoose": "^5.7.1",
     "request": "^2.88.0"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ const request = require("request");
 const utils = require("../utils");
 const errors = require("../errors");
 
-const Player = require("../components/Player");
+const DiscordPlayer = require("../components/DiscordPlayer");
 
 module.exports = (action, message) => {
     commands[action](message);
@@ -11,7 +11,19 @@ module.exports = (action, message) => {
 
 const commands = {
     register: message => {
-        const player = new Player(message.author);
+        const player = new DiscordPlayer(message.author);
         player.register();
+    },
+    listSheets: message => {
+        const player = new DiscordPlayer(message.author);
+        player.listSheets();
+    },
+    current: message => {
+        const player = new DiscordPlayer(message.author);
+        player.current();
+    },
+    playAs: message => {
+        const player = new DiscordPlayer(message.author);
+        player.playAs(message.content);
     }
 };

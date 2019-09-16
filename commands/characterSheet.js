@@ -14,6 +14,7 @@ const commands = {
         if (utils.hasAttachments(message)) {
             const author = message.author;
             let file = message.attachments.first();
+            console.log(file);
 
             request.get(file.url, (error, response, body) => {
                 if (!error && response.statusCode == 200) {
@@ -22,7 +23,7 @@ const commands = {
                     CharacterSheet.validate(fileData)
                         .then(res => {
                             message.channel.send(res);
-                            const cs = new CharacterSheet(fileData, author);
+                            const cs = new CharacterSheet(fileData, file, author.id);
                             cs.register();
                         })
                         .catch(err => {
