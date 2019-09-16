@@ -28,7 +28,7 @@ TRPG Bot provides several features that enhance [SNAP](mailto:guilherme0portela@
 
 2.  Register a Character sheet
     Upload a Character sheet .txt file and type the command `!trpg sheet register`.
-    Important: The file must follow the [SNAP Character sheet template](https://github.com/joao-m-santos/trpg-bot/blob/master/sample_char_sheet.txt)
+    Important: The file must follow the [SNAP Character sheet template](https://github.com/joao-m-santos/trpg-bot/blob/master/sample_sheet.txt)
 
 3.  Select your current sheet
     Now you can select your current sheet by typing `!trpg player playAs {id}`, where {id} is your desired sheet ID. If you don't know your sheet ID, run `!trpg player listSheets`, and you'll be able to see all your registered sheets and their IDs.

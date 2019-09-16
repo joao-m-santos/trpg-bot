@@ -1,0 +1,29 @@
+---
+--- Profile
+[Name]:John Doe
+[Bio]:I'm the man
+---
+--- Status
+[Health]:Healthy
+[Sanity]:5
+[Initiative]:(1/2/3)
+---
+--- Passives
+[Endurance]:(1/2/3)
+[Wits]:(1/2/3)
+[Speed]:(1/2/3)
+---
+--- Skills
+[Combat (melee)]:(0-6)
+[Combat (ranged)]:(0-6)
+[Communication]:(0-6)
+[Orientation]:(0-6)
+[Stealth]:(0-6)
+[Profiling]:(0-6)
+[Science]:(0-6)
+[Occult]:(0-6)
+[Faith]:(0-6)
+[Clearence Level]:(0-6)
+---
+--- LuckyShots
+[Lucky Shots]:0
