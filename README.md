@@ -66,7 +66,7 @@ When you want to use a Skill, type `!trpg roll {skill_name}`, where {skill_name}
 
 | Command                     | Arguments                                                                     | Description                                   | Example                                         |
 | --------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------- | ----------------------------------------------- |
-| `!trpg roll {skill | dice}` | skill - The skill you want to roll for <br> dice - The amount of dice to roll <br> *[Required]* | Rolls dice for a Skill or the amount provided | `!trpg roll combat_melee` <br> `!trpg roll 2d6` |
+| `!trpg roll {skill / dice}` | skill - The skill you want to roll for <br> dice - The amount of dice to roll <br> *[Required]* | Rolls dice for a Skill or the amount provided | `!trpg roll combat_melee` <br> `!trpg roll 2d6` |
 
 ### Skills
 
