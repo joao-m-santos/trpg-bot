@@ -46,18 +46,18 @@ class Roller {
                             "` → **" +
                             diceRoll.result +
                             "**"
-                    );
+                    ).then(message => {
+                        // Delete user message (spam prevention)
+                        message
+                            .delete()
+                            .then(msg =>
+                                console.log(
+                                    `Deleted message from ${msg.author.username}`
+                                )
+                            )
+                            .catch(console.error);
+                    });
                 }
-
-                // Delete user message (spam prevention)
-                message
-                    .delete()
-                    .then(msg =>
-                        console.log(
-                            `Deleted message from ${msg.author.username}`
-                        )
-                    )
-                    .catch(console.error);
             });
     };
 
@@ -81,12 +81,14 @@ class Roller {
                     "**"
             );
         } else {
+            console.log("skillroll");
+
             global.CHANNEL.send(
                 `*🎲 **${
                     player.currentSheet.profile.name
                 }** tried to roll for **${utils.formatToHuman(
                     skill
-                )}** but he has no dices for it! How sad...*`
+                )}** but he/she has no dices for it! How sad...*`
             );
         }
     };

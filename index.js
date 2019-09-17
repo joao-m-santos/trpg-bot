@@ -35,10 +35,12 @@ client.on("message", message => {
     if (isCommand(msgBody)) {
         const commandType = msgBody.split(" ")[1];
         const commandAction = msgBody.split(" ")[2];
+
         console.log(
             "Command type: " + commandType,
             "Command action: " + commandAction
         );
+
         switch (commandType) {
             case "sheet":
                 sheetFunction(commandAction, message);

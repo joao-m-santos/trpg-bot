@@ -44,5 +44,8 @@ const commands = {
                 `\:poop: **No attachment found!** Please attach a Character sheet text file and try again. *(You can find the template at ${sheetTemplate})*`
             );
         }
+    },
+    export: message => {
+        CharacterSheet.export(message);
     }
 };
