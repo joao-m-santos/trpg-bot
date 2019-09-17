@@ -9,13 +9,11 @@ const client = new Discord.Client();
 
 const Player = require("./api/schemas/player");
 const Sheet = require("./api/schemas/sheet");
-const Campaign = require("./api/schemas/campaign");
-const Dm = require("./api/schemas/dm");
 
 const sheetFunction = require("./commands/characterSheet");
 const playerFunction = require("./commands/player");
 const rollFunction = require("./commands/roll");
-const dmFunction = require("./commands/dm");
+const helpFunction = require("./commands/help");
 
 const isCommand = msg => (msg.match(/^!trpg .*$/g) ? true : false);
 
@@ -51,10 +49,13 @@ client.on("message", message => {
             case "roll":
                 rollFunction(message);
                 break;
-            case "dm":
-                dmFunction(commandAction, message);
+            case "help":
+                helpFunction(message);
                 break;
             default:
+                global.CHANNEL.send(
+                    "😿 That command isn't recognized by me... Maybe use `!trpg help` to see what I can do!"
+                );
                 break;
         }
     }
