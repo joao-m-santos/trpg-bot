@@ -92,6 +92,7 @@ class CharacterSheet {
             mongoose
                 .model("sheet")
                 .findOne({ sheetID: sheetID })
+                .lean()
                 .exec((err, sheet) => {
                     if (err) throw err;
 
@@ -112,6 +113,7 @@ class CharacterSheet {
                 .model("player")
                 .findOne({ discordID: `${authorID}` })
                 .populate("currentSheet")
+                .lean()
                 .exec((err, player) => {
                     if (err) throw err;
 
@@ -157,9 +159,7 @@ class CharacterSheet {
             .toLowerCase()
             .replace(/ /g, "-")}.txt`;
 
-        var logger = fs.createWriteStream(filename, {
-            // flags: "a" // 'a' means appending (old data will be preserved)
-        });
+        var logger = fs.createWriteStream(filename);
 
         logger.on("close", ch => {
             global.CHANNEL.send("Here's your file:", {
@@ -173,20 +173,58 @@ class CharacterSheet {
                     }
                 ]
             }).then(message => {
-                console.log(message);
+                // console.log(message);
+                fs.unlink(filename, err => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                });
             });
         });
 
-        logger.write("---");
-        logger.write("--- Profile");
-
+        logger.write("---\n");
+        logger.write("--- Profile\n");
         for (var key of Object.keys(sheet.profile)) {
             console.log(`[${utils.formatToHuman(key)}]:` + sheet.profile[key]);
-            logger.write(`[${utils.formatToHuman(key)}]:` + sheet.profile[key]);
+            logger.write(
+                `[${utils.formatToHuman(key)}]:` + sheet.profile[key] + "\n"
+            );
         }
 
-        // logger.write("more data");
-        // logger.write("and more");
+        logger.write("---\n");
+        logger.write("--- Status\n");
+        for (var key of Object.keys(sheet.status)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.status[key]);
+            logger.write(
+                `[${utils.formatToHuman(key)}]:` + sheet.status[key] + "\n"
+            );
+        }
+
+        logger.write("---\n");
+        logger.write("--- Passives\n");
+        for (var key of Object.keys(sheet.passives)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.passives[key]);
+            logger.write(
+                `[${utils.formatToHuman(key)}]:` + sheet.passives[key] + "\n"
+            );
+        }
+
+        logger.write("---\n");
+        logger.write("--- Skills\n");
+        for (var key of Object.keys(sheet.skills)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.skills[key]);
+            if (key == "clearence_level")
+                logger.write(`[Clearence Level]:` + sheet.skills[key] + "\n");
+            else
+                logger.write(
+                    `[${utils.formatToHuman(key)}]:` + sheet.skills[key] + "\n"
+                );
+        }
+
+        logger.write("---\n");
+        logger.write("--- LuckyShots\n");
+        logger.write(`[Lucky Shots]:` + sheet.lucky_shots);
 
         logger.end();
     };
