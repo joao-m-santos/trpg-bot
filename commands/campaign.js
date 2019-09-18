@@ -13,5 +13,8 @@ const commands = {
     },
     end: message => {
         Campaign.end(message);
+    },
+    getLogs: message => {
+        Campaign.getLogs(message);
     }
 };
