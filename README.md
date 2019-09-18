@@ -49,9 +49,10 @@ When you want to use a Skill, type `!trpg roll {skill_name}`, where {skill_name}
 
 ### Sheet
 
-| Command                | Arguments                      | Description                                |
-| ---------------------- | ------------------------------ | ------------------------------------------ |
-| `!trpg sheet register` | File (attachment) _[Required]_ | Registers a Character sheet to your Player |
+| Command                | Arguments                      | Description                                | Example |
+| ---------------------- | ------------------------------ | ------------------------------------------ |-----|
+| `!trpg sheet register` | File (attachment) _[Required]_ | Registers a Character sheet to your Player |   |
+| `!trpg sheet export {sheet_id}` | sheet_id - The desired sheet ID. _[Optional]_ | Exports a Character sheet by ID or your current sheet | `!trpg sheet export 274662764792774656__charsheet.txt-387` |
 
 ### Player
 
