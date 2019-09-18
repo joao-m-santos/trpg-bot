@@ -27,6 +27,14 @@ module.exports = message => {
     // Character Sheet
     returnText +=
         "```!trpg sheet register                  Registers a Character sheet to your Player (needs an attachment)```";
+    returnText +=
+        "```!trpg sheet export {sheet_id}         Exports a Character sheet by ID or your current sheet```\n";
+
+    // Campaign
+    returnText +=
+        "```!trpg campaign start {campaign_name}  Starts a new campaign with the given name```";
+    returnText +=
+        "```!trpg campaign end {campaign_name}    Ends the campaign```\n";
 
     // Roll
     returnText +=
