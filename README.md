@@ -63,16 +63,6 @@ When you want to use a Skill, type `!trpg roll {skill_name}`, where {skill_name}
 | `!trpg player current`           | --                                            | Displays your current Character sheet (Who you are playing as) |
 | `!trpg player playAs {sheet_id}` | sheet_id - The desired sheet ID *[Required]* | Updates your current Character sheet                           | `!trpg player playAs 274662764792774656__charsheet.txt-387` |
 
-### Dungeon Master
-
-| Command                | Arguments                      | Description                                | Example   |
-| ---------------------- | ------------------------------ | ------------------------------------------ | ----------|
-| `!trpg dm register`    | --                             | Registers yourself as a Dungeon Master     |           |
-| `!trpg dm start campaign {campaign_name}` | campaign_name - The name of your Campaign | Creates a new Campaign | `!trpg dm start campaign A wonderful adventure` |
-| `!trpg dm listCampaigns`        | --      | Displays your registered Campaigns |  |
-| `!trpg dm current`        | --      | Displays the current Campaign you're playing in |  |
-| `!trpg dm playIn {campaign_name}`        | campaign_name - The name of your Campaign | Updates the current Campaign you're playing in | `!trpg dm playIn A wonderful adventure` |
-
 ### Roll
 
 | Command                     | Arguments                                                                     | Description                                   | Example                                         |
