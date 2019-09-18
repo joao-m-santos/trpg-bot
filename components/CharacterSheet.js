@@ -1,4 +1,6 @@
+const Discord = require("discord.js");
 const mongoose = require("mongoose");
+const fs = require("fs");
 
 const utils = require("../utils");
 const validator = require("./utils/validatorObject");
@@ -82,6 +84,54 @@ class CharacterSheet {
         });
     };
 
+    static export = message => {
+        const sheetID = message.content.split(" ")[3];
+
+        if (sheetID) {
+            // Delete sheet by ID
+            mongoose
+                .model("sheet")
+                .findOne({ sheetID: sheetID })
+                .lean()
+                .exec((err, sheet) => {
+                    if (err) throw err;
+
+                    if (sheet) {
+                        // export
+                        console.log("exporting... " + sheet.profile.name);
+                        CharacterSheet.exportFunction(sheet);
+                    } else {
+                        global.CHANNEL.send(
+                            "😕 Couldn't find that sheet for you! Are you sure you typed the right ID? Use `!trpg player listSheets` to get your sheet IDs!"
+                        );
+                    }
+                });
+        } else {
+            // Delete current sheet
+            const authorID = message.author.id;
+            mongoose
+                .model("player")
+                .findOne({ discordID: `${authorID}` })
+                .populate("currentSheet")
+                .lean()
+                .exec((err, player) => {
+                    if (err) throw err;
+
+                    if (player && player.currentSheet) {
+                        // export
+                        console.log(
+                            "exporting... " + player.currentSheet.profile.name
+                        );
+                        CharacterSheet.exportFunction(player.currentSheet);
+                    } else {
+                        global.CHANNEL.send(
+                            "😕 Couldn't find that sheet for you! Are you sure you typed the right ID? Use `!trpg player listSheets` to get your sheet IDs!"
+                        );
+                    }
+                });
+        }
+    };
+
     static validate = data => {
         console.log("Validating...");
         return new Promise((resolve, reject) => {
@@ -100,6 +150,83 @@ class CharacterSheet {
             if (isValid) resolve("✅ Sheet is valid!");
             else reject("❌ Sheet is invalid! Reason(s):\n" + invalidMessage);
         });
+    };
+
+    static exportFunction = sheet => {
+        console.log(sheet);
+
+        const filename = `temp/${sheet.profile.name
+            .toLowerCase()
+            .replace(/ /g, "-")}.txt`;
+
+        var logger = fs.createWriteStream(filename);
+
+        logger.on("close", ch => {
+            global.CHANNEL.send("Here's your file:", {
+                files: [
+                    {
+                        attachment: filename,
+                        name: `SNAP_Sheet_${sheet.profile.name.replace(
+                            / /g,
+                            "-"
+                        )}.txt`
+                    }
+                ]
+            }).then(message => {
+                // console.log(message);
+                fs.unlink(filename, err => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                });
+            });
+        });
+
+        logger.write("---\n");
+        logger.write("--- Profile\n");
+        for (var key of Object.keys(sheet.profile)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.profile[key]);
+            logger.write(
+                `[${utils.formatToHuman(key)}]:` + sheet.profile[key] + "\n"
+            );
+        }
+
+        logger.write("---\n");
+        logger.write("--- Status\n");
+        for (var key of Object.keys(sheet.status)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.status[key]);
+            logger.write(
+                `[${utils.formatToHuman(key)}]:` + sheet.status[key] + "\n"
+            );
+        }
+
+        logger.write("---\n");
+        logger.write("--- Passives\n");
+        for (var key of Object.keys(sheet.passives)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.passives[key]);
+            logger.write(
+                `[${utils.formatToHuman(key)}]:` + sheet.passives[key] + "\n"
+            );
+        }
+
+        logger.write("---\n");
+        logger.write("--- Skills\n");
+        for (var key of Object.keys(sheet.skills)) {
+            console.log(`[${utils.formatToHuman(key)}]:` + sheet.skills[key]);
+            if (key == "clearence_level")
+                logger.write(`[Clearence Level]:` + sheet.skills[key] + "\n");
+            else
+                logger.write(
+                    `[${utils.formatToHuman(key)}]:` + sheet.skills[key] + "\n"
+                );
+        }
+
+        logger.write("---\n");
+        logger.write("--- LuckyShots\n");
+        logger.write(`[Lucky Shots]:` + sheet.lucky_shots);
+
+        logger.end();
     };
 }
 

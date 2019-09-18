@@ -62,7 +62,7 @@ class DiscordPlayer {
                     }
 
                     global.CHANNEL.send(
-                        "Here are your available sheets. Select a character to play as by typing `!trpg player {id}`"
+                        "Here are your available sheets. Select a character to play as by typing `!trpg player playAs {id}`"
                     );
                     var message = ``;
                     for (var sheet of player.sheets) {
