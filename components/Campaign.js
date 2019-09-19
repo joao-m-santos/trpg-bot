@@ -73,6 +73,9 @@ class Campaign {
 
     static getLogs = message => {
         const campaignName = Campaign.getNameFromMessage(message);
+        global.CHANNEL.send(
+            `📚 Compiling messages... *(This might take a bit)*`
+        );
 
         mongoose
             .model("campaign")
@@ -126,7 +129,7 @@ class Campaign {
             var logger = fs.createWriteStream(filename);
 
             logger.on("close", ch => {
-                global.CHANNEL.send("Here's your file:", {
+                global.CHANNEL.send("📝 Here's your file:", {
                     files: [
                         {
                             attachment: filename,
