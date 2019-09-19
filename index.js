@@ -9,10 +9,12 @@ const client = new Discord.Client();
 
 const Player = require("./api/schemas/player");
 const Sheet = require("./api/schemas/sheet");
+const Campaign = require("./api/schemas/campaign");
 
 const sheetFunction = require("./commands/characterSheet");
 const playerFunction = require("./commands/player");
 const rollFunction = require("./commands/roll");
+const campaignFunction = require("./commands/campaign");
 const helpFunction = require("./commands/help");
 
 const isCommand = msg => (msg.match(/^!trpg .*$/g) ? true : false);
@@ -50,6 +52,9 @@ client.on("message", message => {
                 break;
             case "roll":
                 rollFunction(message);
+                break;
+            case "campaign":
+                campaignFunction(commandAction, message);
                 break;
             case "help":
                 helpFunction(message);

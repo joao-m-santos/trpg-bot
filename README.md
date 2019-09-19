@@ -69,6 +69,14 @@ When you want to use a Skill, type `!trpg roll {skill_name}`, where {skill_name}
 | --------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------- | ----------------------------------------------- |
 | `!trpg roll {skill / dice}` | skill - The skill you want to roll for <br> dice - The amount of dice to roll <br> *[Required]* | Rolls dice for a Skill or the amount provided | `!trpg roll combat_melee` <br> `!trpg roll 2d6` |
 
+### Campaign
+
+| Command | Arguments | Description | Example |
+| ------- | --------- | ----------- | ------- |
+| `!trpg campaign start {campaign_name}` | campaign_name - The name for the new campaign *[Required]* | Starts a new campaign with the given name | `!trpg campaign start A wonderful adventure` |
+| `!trpg campaign end {campaign_name}` | campaign_name - The name of the campaign to end *[Required]* | Ends the campaign | `!trpg campaign end A wonderful adventure` |
+| `!trpg campaign getLogs {campaign_name}` | campaign_name - The name of the campaign to get the logs from *[Required]* | Exports a file with the entire campaign's logs | `!trpg campaign getLogs A wonderful adventure` |
+
 ### Skills
 
 | Name            | Code            |
